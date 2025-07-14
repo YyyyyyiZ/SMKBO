@@ -8,8 +8,6 @@ from torch.quasirandom import SobolEngine
 
 from SMKBO.cas.localbo_cat import CASMOPOLITANCat
 from SMKBO.cas.localbo_utils import train_gp
-from SMKBO.cas.localbo_utils import from_unit_cube, latin_hypercube, to_unit_cube
-from SMKBO.cas.localbo_utils import onehot2ordinal
 from SMKBO.cas.localbo_utils import random_sample_within_discrete_tr_ordinal
 
 

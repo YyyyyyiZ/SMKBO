@@ -1,5 +1,5 @@
 import torch
-from SMKBO.test_func.base import TestFunction
+from .base import TestFunction
 
 class Branin(TestFunction):
     """

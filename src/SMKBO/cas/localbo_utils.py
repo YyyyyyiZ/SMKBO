@@ -1,12 +1,10 @@
-import math
 import logging
 
-import gpytorch
 import numpy as np
 import torch
 from gpytorch.constraints.constraints import Interval
 from gpytorch.distributions import MultivariateNormal
-from gpytorch.kernels import MaternKernel, ScaleKernel
+from gpytorch.kernels import ScaleKernel
 from gpytorch.likelihoods import GaussianLikelihood
 from gpytorch.means import ConstantMean
 from gpytorch.mlls import ExactMarginalLogLikelihood
@@ -14,9 +12,8 @@ from gpytorch.models import ExactGP
 from collections.abc import Callable
 import random
 from copy import deepcopy
-import time
-from SMKBO.cas.kernels import *
-from SMKBO.test_func import *
+
+from SMKBO.cas.kernels import CategoricalOverlap, TransformedCategorical, OrdinalKernel, MixtureKernel
 
 
 def onehot2ordinal(x, categorical_dims):
@@ -187,7 +184,6 @@ def from_unit_cube(x, lb, ub):
 
 
 def latin_hypercube(n_pts, dim):
-    import time
     """Basic Latin hypercube implementation with center perturbation."""
     X = np.zeros((n_pts, dim))
     centers = (1.0 + 2.0 * np.arange(0.0, n_pts)) / float(2 * n_pts)
@@ -403,7 +399,6 @@ def interleaved_search(x_center, f: Callable,
     # todo: the batch setting needs to be changed. For the continuous dimensions, we cannot simply do top-n indices.
 
     from torch.quasirandom import SobolEngine
-    from scipy.optimize import minimize, Bounds
 
     # select the initialising points for both the continuous and categorical variables and then hstack them together
     # x0_cat = np.array([deepcopy(sample_neighbour_ordinal(x_center[cat_dims], config)) for _ in range(n_restart)])

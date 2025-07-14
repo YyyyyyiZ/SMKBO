@@ -3,10 +3,9 @@ from copy import deepcopy
 import numpy as np
 import scipy.stats as ss
 from SMKBO.cas.localbo_cat import CASMOPOLITANCat
-from SMKBO.cas.localbo_utils import from_unit_cube, latin_hypercube, to_unit_cube, ordinal2onehot, onehot2ordinal,\
+from SMKBO.cas.localbo_utils import from_unit_cube, latin_hypercube, onehot2ordinal,\
     random_sample_within_discrete_tr_ordinal
 import torch
-import logging
 
 
 def order_stats(X):

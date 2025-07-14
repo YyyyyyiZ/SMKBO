@@ -5,7 +5,7 @@ from gpytorch.mlls import ExactMarginalLogLikelihood
 from gpytorch.constraints.constraints import GreaterThan
 from gpytorch.priors.torch_priors import GammaPrior
 from botorch.fit import fit_gpytorch_mll
-from botorch.acquisition import ExpectedImprovement, ProbabilityOfImprovement, UpperConfidenceBound, qKnowledgeGradient
+from botorch.acquisition import ExpectedImprovement, ProbabilityOfImprovement, UpperConfidenceBound
 from botorch.optim import optimize_acqf
 
 from SMKBO.spectral.gp_regression import SingleTaskGP

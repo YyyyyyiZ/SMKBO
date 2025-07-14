@@ -14,7 +14,6 @@ from botorch.models.transforms.input import InputTransform
 from botorch.models.transforms.outcome import OutcomeTransform, Standardize
 from botorch.models.utils import validate_input_scaling
 from botorch.models.utils.gpytorch_modules import (
-    get_covar_module_with_dim_scaled_prior,
     get_gaussian_likelihood_with_lognormal_prior,
 )
 from botorch.utils.containers import BotorchContainer

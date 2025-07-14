@@ -1,5 +1,5 @@
 import numpy as np
-from SMKBO.test_func.base import TestFunction
+from .base import TestFunction
 
 
 class Func2C(TestFunction):
