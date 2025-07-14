@@ -7,10 +7,10 @@ This repo contains implementation of the SMKBO algorithm for mixed input variabl
 #### Dependencies
 
 ```
-Python>=3.9
-gpytorch>=1.14
+Python==3.9
+gpytorch==1.14
 pytorch==2.5.1
-botorch>=0.14.0
+botorch==0.14.0
 numpy==1.16.4
 ```
 
