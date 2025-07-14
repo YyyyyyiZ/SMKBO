@@ -19,7 +19,7 @@ numpy==1.16.4
 The latest release of SMKBO is easily installed via `pip`:
 
 ```bash
-pip install smkbo
+pip install SMKBO
 ```
 
 
