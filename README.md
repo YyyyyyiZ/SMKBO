@@ -29,6 +29,8 @@ If you want to contribute to SMKBO, you will want to install editably so that yo
 
 ```bash
 git clone https://github.com/YyyyyyiZ/SMKBO.git
+cd SMKBO
+pip install -e .
 ```
 
 

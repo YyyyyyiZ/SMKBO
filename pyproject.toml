@@ -1,0 +1,25 @@
+[build-system]
+requires = ["setuptools>=42", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "SMKBO"
+version = "0.0.2"
+authors = [
+    {name = "Yi Zhang", email = "z-yi24@mails.tsinghua.edu.cn"},
+]
+description = "Spectral mixture kernel for Bayesian Optimization"
+readme = "README.md"
+requires-python = ">=3.9"
+license = {text = "MIT"}
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+]
+
+[project.urls]
+Homepage = "https://github.com/YyyyyyiZ/SMKBO"
+
+[tool.setuptools]
+license-files = ["LICENSE.txt"]
