@@ -7,11 +7,10 @@ This repo contains implementation of the SMKBO algorithm for mixed input variabl
 #### Dependencies
 
 ```
-Python==3.9
+Python==3.10.16
 gpytorch==1.14
 pytorch==2.5.1
 botorch==0.14.0
-numpy==1.16.4
 ```
 
 #### Option 1: Installing the latest release
@@ -98,7 +97,14 @@ Here's a quick run down of the main components of a Bayesian optimization loop.
            print('Iter %d, Last X %s; \n fX:  %.4f. fX_best: %.4f'
                  % (i, x_next, float(Y[-1]), Y[:i][argmin]))
    ```
+  
+4. Plot Results
+
+   ```python
+   bo.plot_res()
+   ```
    
+   <img src="https://gitee.com/yyyyyyiZ/typora-bed/raw/master/image/20250720131707489.png" alt="image-20250720131707305" style="zoom:50%;" />
    
 
 ### Customize a New Optimization Problem

@@ -1,4 +1,5 @@
 import torch
+from copy import deepcopy
 
 from gpytorch.likelihoods import GaussianLikelihood
 from gpytorch.mlls import ExactMarginalLogLikelihood
@@ -38,7 +39,11 @@ class OptimizerCont:
 
     def suggest(self, batch_size=1):
         if self.X is None:
-            x_next = self._create_initial_points()
+            self.X_init = self._create_initial_points()
+        n_init = min(len(self.X_init), batch_size)
+        if n_init > 0:
+            x_next = deepcopy(self.X_init[:n_init, :])
+            self.X_init = self.X_init[n_init:, :]  # Remove these pending points
         else:
             x_next = self._get_next_points(batch_size=batch_size)
         return x_next

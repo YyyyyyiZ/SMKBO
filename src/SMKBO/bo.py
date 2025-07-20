@@ -2,6 +2,9 @@ from SMKBO.cas.optimizer import Optimizer
 from SMKBO.cas.optimizer_mixed import MixedOptimizer
 from SMKBO.cas.optimizer_cont import OptimizerCont
 
+import numpy as np
+import matplotlib.pyplot as plt
+
 class SpectralBO:
     def __init__(self, problem_type='mixed', cat_vertices=None, cont_lb=None, cont_ub=None, cat_dims=None, cont_dims=None,
                  continuous_kern_type='smk', n_Cauchy=5, n_Gaussian=4, n_init=20, acq_func='ei',
@@ -21,18 +24,36 @@ class SpectralBO:
         self.noise_variance = noise_variance
         self._sanity_check()
 
-        if problem_type == 'mixed':
+        if self.problem_type == 'mixed':
             kwargs = {"continuous_kern_type": self.continuous_kern_type, "num_mixtures1": self.n_Cauchy,
                       "num_mixtures2": self.n_Gaussian}
             self.optim = MixedOptimizer(self.cat_vertices, self.cont_lb, self.cont_ub, self.cont_dims, self.cat_dims,
                                    n_init=self.n_init, use_ard=self.ard, acq=self.acq_func, kernel_type='mixed',
                                    noise_variance=self.noise_variance, **kwargs)
-        elif problem_type == 'categorical':
+        elif self.problem_type == 'categorical':
             self.optim = Optimizer(self.cat_vertices, n_init=self.n_init, use_ard=self.ard, acq=self.acq_func,
                               kernel_type='transformed_overlap', noise_variance=self.noise_variance)
         else:
             self.optim=OptimizerCont(lb=self.cont_lb, ub=self.cont_ub, continuous_kern_type=self.continuous_kern_type,
                                      n_Cauchy=self.n_Cauchy, n_Gaussian=self.n_Gaussian, acq=self.acq_func, n_init=self.n_init)
+
+    def plot_res(self):
+        if self.problem_type == 'mixed' or self.problem_type == 'categorical':
+            Y = self.optim.smkbo.fX
+        else:
+            Y = self.optim.fX
+        best_val = np.minimum.accumulate(Y)
+        iterations = np.arange(len(Y))
+        plt.figure(figsize=(8, 5))
+        plt.plot(iterations, best_val, 'b-o', label='best value', markersize=5)
+        plt.plot(iterations, Y, 'r--s', label='query value', markersize=5)
+
+        plt.title('Query Values vs. Best Values over Iterations', fontsize=12)
+        plt.xlabel('Iteration', fontsize=10)
+        plt.ylabel('Value', fontsize=10)
+        plt.legend(loc='upper right')
+        plt.show()
+
 
     def _sanity_check(self):
         assert self.problem_type in ['categorical', 'continuous', 'mixed'], 'Unknown problem type ' + str(self.problem_type)

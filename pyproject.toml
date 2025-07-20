@@ -4,13 +4,18 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "SMKBO"
-version = "0.0.2"
+version = "0.0.3"
 authors = [
     {name = "Yi Zhang", email = "z-yi24@mails.tsinghua.edu.cn"},
 ]
 description = "Spectral mixture kernel for Bayesian Optimization"
 readme = "README.md"
-requires-python = ">=3.9"
+requires-python = ">=3.10"
+dependencies = [
+    "torch==2.5.1",
+    "gpytorch>=1.14",
+    "botorch>=0.14.0"
+]
 license = {text = "MIT"}
 classifiers = [
     "Programming Language :: Python :: 3",
